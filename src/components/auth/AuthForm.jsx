@@ -48,32 +48,55 @@ const AuthFormFooter = styled.div`
       left: 0;
       bottom: -1px;
       background-color: #999;
-      width: 0%;
+      width: 100%;
       height: 1px;
-      transition: 0.2s ease width;
+      transition: 0.2s ease transform, 0.2s ease background-color;
+      transform: scaleX(0);
     }
 
     &:hover {
       color: #333;
       &::after {
-        width: 100%;
+        background-color: #666;
+        transform: scaleX(1);
       }
     }
   }
 `;
 
-export const AuthForm = ({ type }) => {
+export const AuthForm = ({ type, form, onSubmit, onChange }) => {
   const text = textMap[type];
   return (
     <AuthFormBox>
       <h3>{text}</h3>
-      <form>
-        <AuthFormInput type="text" placeholder="아이디" />
-        <AuthFormInput type="password" placeholder="비밀번호" />
+      <form onSubmit={onSubmit}>
+        <AuthFormInput
+          autoComplete="username"
+          name="username"
+          type="text"
+          placeholder="아이디"
+          onChange={onChange}
+          value={form.username}
+        />
+        <AuthFormInput
+          autoComplete="password"
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          onChange={onChange}
+          value={form.password}
+        />
         {type === 'register' && (
-          <AuthFormInput type="password" placeholder="비밀번호 확인" />
+          <AuthFormInput
+            autoComplete="password"
+            name="passwordConfirm"
+            type="password"
+            placeholder="비밀번호 확인"
+            onChange={onChange}
+            value={form.passwordConfirm}
+          />
         )}
-        <Button fullWidth style={{ marginTop: '1.5rem' }}>
+        <Button fullWidth={true} style={{ marginTop: '1.5rem' }}>
           {text}
         </Button>
       </form>
