@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ButtonBox = styled.button`
   border: none;
@@ -15,6 +15,13 @@ const ButtonBox = styled.button`
   &:hover {
     background-color: dodgerblue;
   }
+
+  ${(props) =>
+    props.fullWidth &&
+    css`
+      width: 100%;
+      padding: 0.5rem 0;
+    `}
 `;
 
 export const Button = (props) => {
