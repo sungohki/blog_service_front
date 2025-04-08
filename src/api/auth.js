@@ -8,7 +8,6 @@ export const authLogin = async ({ username, password }) => {
 };
 
 export const authRegister = async ({ username, password }) => {
-  console.log(username, password);
   return client.post('/api/auth/register', {
     username,
     password,
