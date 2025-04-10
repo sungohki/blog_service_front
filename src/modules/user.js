@@ -22,7 +22,8 @@ export const checkThunk = () => async (dispatch) => {
     dispatch({ type: CHECK_SUCCESS, payload: res.data }); // 사용자 정보 확인 성공
   } catch (error) {
     console.error('사용자 정보 확인 실패', error);
-    dispatch({ type: CHECK_FAILURE, payload: error, error: true }); // 사용자 정보 확인 성공
+    dispatch(finishLoading(CHECK));
+    return dispatch({ type: CHECK_FAILURE, error: true }); // 사용자 정보 확인 성공
   }
   dispatch(finishLoading(CHECK));
 };
