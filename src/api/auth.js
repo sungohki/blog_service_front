@@ -17,3 +17,7 @@ export const authRegister = async ({ username, password }) => {
 export const authCheck = async () => {
   return client.get('/api/auth/check');
 };
+
+export const authLogout = async () => {
+  return client.post('/api/auth/logout');
+};

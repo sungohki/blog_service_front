@@ -46,7 +46,7 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const Header = ({ user }) => {
+const Header = ({ user, handleLogout }) => {
   return (
     <>
       <HeaderBox>
@@ -62,7 +62,7 @@ const Header = ({ user }) => {
               </UserInfo>
             )}
             {user ? (
-              <Button to={'/login'}>{'로그아웃'}</Button>
+              <Button onClick={handleLogout}>{'로그아웃'}</Button>
             ) : (
               <Button to={'/login'}>{'로그인'}</Button>
             )}

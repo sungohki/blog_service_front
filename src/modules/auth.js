@@ -20,19 +20,6 @@ export const changeField = createAction(
 );
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
-export const login = createAction(LOGIN, ({ username, password }) => ({
-  username,
-  password,
-}));
-export const register = createAction(
-  REGISTER,
-  ({ username, password, passwordConfirm }) => ({
-    username,
-    password,
-    passwordConfirm,
-  })
-);
-
 export const loginThunk = (username, password) => async (dispatch) => {
   dispatch(startLoading(LOGIN)); // 로딩 시작
   try {
