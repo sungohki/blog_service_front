@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const ButtonBox = styled.button`
@@ -24,6 +25,13 @@ const ButtonBox = styled.button`
     `}
 `;
 
-export const Button = (props) => {
-  return <ButtonBox {...props}></ButtonBox>;
+export const Button = ({ to, ...restProps }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    if (to) navigate(to);
+    if (restProps.onClick) restProps.onClick(e);
+  };
+
+  return <ButtonBox {...restProps} onClick={handleClick}></ButtonBox>;
 };

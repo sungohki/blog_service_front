@@ -1,10 +1,10 @@
-import { Button } from 'components/common/Button';
+import HeaderContainer from 'containers/common/HeaderContainer';
 import React from 'react';
 
 export const PostListPage = () => {
   return (
     <>
-      <Button>테스트</Button>
+      <HeaderContainer />
     </>
   );
 };
