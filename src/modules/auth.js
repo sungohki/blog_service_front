@@ -32,6 +32,7 @@ export const register = createAction(
     passwordConfirm,
   })
 );
+
 export const loginThunk = (username, password) => async (dispatch) => {
   dispatch(startLoading(LOGIN)); // 로딩 시작
   try {

@@ -64,8 +64,16 @@ const AuthFormFooter = styled.div`
   }
 `;
 
-export const AuthForm = ({ type, form, onSubmit, onChange }) => {
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+`;
+
+const AuthForm = ({ type, form, onSubmit, onChange, error }) => {
   const text = textMap[type];
+
   return (
     <AuthFormBox>
       <h3>{text}</h3>
@@ -96,7 +104,8 @@ export const AuthForm = ({ type, form, onSubmit, onChange }) => {
             value={form.passwordConfirm}
           />
         )}
-        <Button fullWidth={true} style={{ marginTop: '1.5rem' }}>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <Button fullwidth="true" style={{ marginTop: '1.5rem' }}>
           {text}
         </Button>
       </form>
@@ -110,3 +119,5 @@ export const AuthForm = ({ type, form, onSubmit, onChange }) => {
     </AuthFormBox>
   );
 };
+
+export default AuthForm;

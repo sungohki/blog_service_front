@@ -28,6 +28,13 @@ const AuthTemplateInnerBox = styled.div`
     font-weight: 700;
     letter-spacing: 2px;
     font-size: 1.4rem;
+
+    a {
+      transition: 0.2s ease color;
+      &:hover {
+        color: dodgerblue;
+      }
+    }
   }
 `;
 

@@ -1,7 +1,7 @@
-import { AuthForm } from 'components/auth/AuthForm';
+import AuthForm from 'components/auth/AuthForm';
 import { changeField, initializeForm, loginThunk } from 'modules/auth';
 import { checkThunk } from 'modules/user';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,8 @@ const LoginForm = () => {
     shallowEqual
   );
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [isInit, setIsInit] = useState(false);
 
   // 입력 시 store.auth.login 수정
   const handleChange = (e) => {
@@ -33,18 +35,21 @@ const LoginForm = () => {
 
   useEffect(() => {
     dispatch(initializeForm('login'));
+    setIsInit(true);
   }, [dispatch]);
 
   useEffect(() => {
+    if (!isInit) return;
     if (authError) {
       console.error('Login failed', authError);
+      setError('로그인 실패');
       return;
     }
     if (auth) {
       window.alert(auth.username + ' 로그인 성공');
       dispatch(checkThunk());
     }
-  }, [auth, authError, dispatch]);
+  }, [isInit, auth, authError, dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -58,6 +63,7 @@ const LoginForm = () => {
       form={form}
       onSubmit={handleSubmit}
       onChange={handleChange}
+      error={error}
     />
   );
 };
