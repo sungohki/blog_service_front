@@ -5,14 +5,13 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from 'modules';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { thunk } from 'redux-thunk';
 import { checkThunk, tempSetUser } from 'modules/user';
 
 const store = configureStore({
   reducer: rootReducer,
-  ...composeWithDevTools(thunk),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
