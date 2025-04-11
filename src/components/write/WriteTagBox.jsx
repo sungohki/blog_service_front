@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 
-const PostTagBoxBlock = styled.div`
+const WriteTagBoxBlock = styled.div`
   width: 100%;
   border-top: 2px dashed skyblue;
   padding-top: 2rem;
@@ -13,7 +13,7 @@ const PostTagBoxBlock = styled.div`
   }
 `;
 
-const PostTagForm = styled.form`
+const WriteTagForm = styled.form`
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -57,7 +57,7 @@ const PostTagForm = styled.form`
   }
 `;
 
-const PostTagListItemBlock = styled.div`
+const WriteTagListItemBlock = styled.div`
   margin: 0.4rem 0.2rem;
   padding: 0.2rem 0.8rem;
   border-radius: 30px;
@@ -70,34 +70,34 @@ const PostTagListItemBlock = styled.div`
   }
 `;
 
-const PostTagListBlock = styled.div`
+const WriteTagListBlock = styled.div`
   display: flex;
   margin: 0.5rem 0;
 `;
 
 // React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링 처리
-const PostTagListItem = React.memo(({ tag, onRemove }) => {
+const WriteTagListItem = React.memo(({ tag, onRemove }) => {
   return (
-    <PostTagListItemBlock onClick={onRemove}># {tag}</PostTagListItemBlock>
+    <WriteTagListItemBlock onClick={onRemove}># {tag}</WriteTagListItemBlock>
   );
 });
 
 // React.memo를 사용하여 tags 값이 바뀔 때만 리렌더링 처리
-const PostTagList = React.memo(({ tags, onRemove }) => {
+const WriteTagList = React.memo(({ tags, onRemove }) => {
   return (
-    <PostTagListBlock>
+    <WriteTagListBlock>
       {tags.map((item) => (
-        <PostTagListItem
+        <WriteTagListItem
           key={item}
           tag={item}
           onRemove={() => onRemove(item)}
         />
       ))}
-    </PostTagListBlock>
+    </WriteTagListBlock>
   );
 });
 
-const PostTagBox = () => {
+const WriteTagBox = () => {
   const [input, setInput] = useState('');
   const [localTags, setLocalTags] = useState([]);
 
@@ -128,9 +128,9 @@ const PostTagBox = () => {
   );
 
   return (
-    <PostTagBoxBlock>
+    <WriteTagBoxBlock>
       <h4># 태그</h4>
-      <PostTagForm>
+      <WriteTagForm>
         <input
           value={input}
           placeholder="태그를 입력하세요."
@@ -139,10 +139,10 @@ const PostTagBox = () => {
         <button type="submit" onClick={handleSubmit}>
           추가
         </button>
-      </PostTagForm>
-      <PostTagList tags={localTags} onRemove={handleRemoveTag} />
-    </PostTagBoxBlock>
+      </WriteTagForm>
+      <WriteTagList tags={localTags} onRemove={handleRemoveTag} />
+    </WriteTagBoxBlock>
   );
 };
 
-export default PostTagBox;
+export default WriteTagBox;

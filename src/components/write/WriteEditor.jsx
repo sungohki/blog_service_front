@@ -3,11 +3,11 @@ import 'quill/dist/quill.bubble.css'; // Quill.js의 bubble 테마 CSS
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const EditorBox = styled.div`
+const WriteEditorBox = styled.div`
   padding: 2rem 0;
 `;
 
-const EditorTitleInput = styled.input`
+const WriteEditorTitleInput = styled.input`
   font-size: 2.5rem;
   outline: none;
   padding: 1rem 2rem;
@@ -50,7 +50,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const PostEditor = () => {
+const WriteEditor = () => {
   const quillElement = useRef(null); // Quill.js를 사용할 DOM 요소
   const quillInstance = useRef(null); // Quill.js 인스턴스
 
@@ -70,12 +70,12 @@ const PostEditor = () => {
   }, []);
 
   return (
-    <EditorBox>
-      <EditorTitleInput placeholder="제목을 입력하세요" />
+    <WriteEditorBox>
+      <WriteEditorTitleInput placeholder="제목을 입력하세요" />
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>
-    </EditorBox>
+    </WriteEditorBox>
   );
 };
-export default PostEditor;
+export default WriteEditor;

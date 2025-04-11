@@ -1,7 +1,7 @@
 import Responsive from 'components/common/Responsive';
-import PostEditor from 'components/post/PostEditor';
-import PostRegisterButtons from 'components/post/PostRegisterButtons';
-import PostTagBox from 'components/post/PostTagBox';
+import WriteEditor from 'components/write/WriteEditor';
+import WriteButtons from 'components/write/WriteButtons';
+import WriteTagBox from 'components/write/WriteTagBox';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,9 +17,9 @@ const PostWritePageBlock = styled(Responsive)`
 export const PostWritePage = () => {
   return (
     <PostWritePageBlock>
-      <PostEditor />
-      <PostTagBox />
-      <PostRegisterButtons />
+      <WriteEditor />
+      <WriteTagBox />
+      <WriteButtons />
     </PostWritePageBlock>
   );
 };
