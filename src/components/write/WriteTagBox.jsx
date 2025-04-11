@@ -97,9 +97,8 @@ const WriteTagList = React.memo(({ tags, onRemove }) => {
   );
 });
 
-const WriteTagBox = () => {
+const WriteTagBox = ({ tags, onChangeTags }) => {
   const [input, setInput] = useState('');
-  const [localTags, setLocalTags] = useState([]);
 
   const handleChange = useCallback((e) => {
     setInput(e.target.value);
@@ -108,15 +107,18 @@ const WriteTagBox = () => {
   const insertTag = useCallback(
     (tag) => {
       if (!tag) return; // 태그가 비어있으면 추가하지 않음
-      if (localTags.includes(tag)) return; // 이미 존재하는 태그는 추가하지 않음
-      setLocalTags((prevTags) => [...prevTags, tag]);
+      if (tags.includes(tag)) return; // 이미 존재하는 태그는 추가하지 않음
+      onChangeTags([...tags, tag]);
     },
-    [localTags]
+    [onChangeTags, tags]
   );
 
-  const handleRemoveTag = useCallback((tag) => {
-    setLocalTags((prevTags) => prevTags.filter((item) => item !== tag));
-  }, []);
+  const handleRemoveTag = useCallback(
+    (tag) => {
+      onChangeTags(tags.filter((item) => item !== tag));
+    },
+    [tags, onChangeTags]
+  );
 
   const handleSubmit = useCallback(
     (e) => {
@@ -140,7 +142,7 @@ const WriteTagBox = () => {
           추가
         </button>
       </WriteTagForm>
-      <WriteTagList tags={localTags} onRemove={handleRemoveTag} />
+      <WriteTagList tags={tags} onRemove={handleRemoveTag} />
     </WriteTagBoxBlock>
   );
 };

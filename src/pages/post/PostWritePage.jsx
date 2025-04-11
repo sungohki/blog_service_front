@@ -1,9 +1,9 @@
 import Responsive from 'components/common/Responsive';
 import WriteButtons from 'components/write/WriteButtons';
-import WriteTagBox from 'components/write/WriteTagBox';
 import React from 'react';
 import styled from 'styled-components';
 import WriteEditorContainer from 'containers/write/WriteEditorContainer';
+import WriteTagBoxContainer from 'containers/write/WriteTagBoxContainer';
 
 const PostWritePageBlock = styled(Responsive)`
   position: relative;
@@ -18,7 +18,7 @@ export const PostWritePage = () => {
   return (
     <PostWritePageBlock>
       <WriteEditorContainer />
-      <WriteTagBox />
+      <WriteTagBoxContainer />
       <WriteButtons />
     </PostWritePageBlock>
   );
