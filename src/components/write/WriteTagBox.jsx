@@ -72,6 +72,7 @@ const WriteTagListItemBlock = styled.div`
 
 const WriteTagListBlock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin: 0.5rem 0;
 `;
 
