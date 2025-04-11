@@ -2,20 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import PostSubInfo from './PostSubInfo';
 import PostTagBox from './PostTagBox';
+import { Link } from 'react-router-dom';
 
 const PostItemBlock = styled.div`
   padding: 1rem 1rem;
 
-  transition: 0.2s ease all;
-  cursor: pointer;
+  transition: 0.2s ease background-color;
   &:hover {
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     background-color: aliceblue;
-  }
-  &:first-child {
-    padding-top: 0;
   }
   & + & {
     border-top: 1px solid #aaa;
@@ -25,19 +19,23 @@ const PostItemBlock = styled.div`
     margin: 0;
     color: #333;
     transition: 0.2s ease color;
+    cursor: pointer;
     &:hover {
       color: dodgerblue;
     }
   }
 `;
 
-const PostItem = () => {
-  const tags = ['태그1', '태그2'];
+const PostItem = ({ post }) => {
+  const { publishedDate, user, tags, title, body, _id } = post;
+
   return (
     <PostItemBlock>
-      <h2>포스트 제목</h2>
-      <PostSubInfo username={'username'} publishedDate={null} />
-      <p>body</p>
+      <h2>
+        <Link to={`/${user.username}/${_id}`}>{title}</Link>
+      </h2>
+      <PostSubInfo username={user.username} publishedDate={publishedDate} />
+      <p>{body}</p>
       <PostTagBox tags={tags} />
     </PostItemBlock>
   );
