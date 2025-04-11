@@ -8,7 +8,7 @@ const textMap = {
   register: '회원가입',
 };
 
-const AuthFormBox = styled.div`
+const AuthFormBlock = styled.div`
   h3 {
     margin: 0;
     color: #333;
@@ -75,7 +75,7 @@ const AuthForm = ({ type, form, onSubmit, onChange, error }) => {
   const text = textMap[type];
 
   return (
-    <AuthFormBox>
+    <AuthFormBlock>
       <h3>{text}</h3>
       <form onSubmit={onSubmit}>
         <AuthFormInput
@@ -116,7 +116,7 @@ const AuthForm = ({ type, form, onSubmit, onChange, error }) => {
           <Link to="/login">로그인</Link>
         )}
       </AuthFormFooter>
-    </AuthFormBox>
+    </AuthFormBlock>
   );
 };
 

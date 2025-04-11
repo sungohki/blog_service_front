@@ -3,7 +3,7 @@ import 'quill/dist/quill.bubble.css'; // Quill.js의 bubble 테마 CSS
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const WriteEditorBox = styled.div`
+const WriteEditorBlock = styled.div`
   padding: 2rem 0;
 `;
 
@@ -70,12 +70,12 @@ const WriteEditor = () => {
   }, []);
 
   return (
-    <WriteEditorBox>
+    <WriteEditorBlock>
       <WriteEditorTitleInput placeholder="제목을 입력하세요" />
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>
-    </WriteEditorBox>
+    </WriteEditorBlock>
   );
 };
 export default WriteEditor;

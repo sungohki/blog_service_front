@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-const ButtonBox = styled.button`
+const ButtonBlock = styled.button`
   border: none;
   border-radius: 5px;
   font-size: 1rem;
@@ -33,5 +33,5 @@ export const Button = ({ to, ...restProps }) => {
     if (restProps.onClick) restProps.onClick(e);
   };
 
-  return <ButtonBox {...restProps} onClick={handleClick}></ButtonBox>;
+  return <ButtonBlock {...restProps} onClick={handleClick}></ButtonBlock>;
 };

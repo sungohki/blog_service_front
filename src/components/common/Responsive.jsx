@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ResponsiveBox = styled.div`
+const ResponsiveBlock = styled.div`
   padding: 0 10px;
   width: 1024px;
   margin: 0 auto;
@@ -17,7 +17,7 @@ const ResponsiveBox = styled.div`
 `;
 
 const Responsive = ({ children, ...restProps }) => {
-  return <ResponsiveBox {...restProps}>{children}</ResponsiveBox>;
+  return <ResponsiveBlock {...restProps}>{children}</ResponsiveBlock>;
 };
 
 export default Responsive;

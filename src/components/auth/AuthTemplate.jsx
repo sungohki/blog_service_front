@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const AuthTemplateBox = styled.div`
+const AuthTemplateBlock = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@ const AuthTemplateBox = styled.div`
   height: 100%;
 `;
 
-const AuthTemplateInnerBox = styled.div`
+const AuthTemplateInnerBlock = styled.div`
   background-color: white;
   width: 400px;
   padding: 20px;
@@ -40,13 +40,13 @@ const AuthTemplateInnerBox = styled.div`
 
 export const AuthTemplate = ({ children }) => {
   return (
-    <AuthTemplateBox>
-      <AuthTemplateInnerBox>
+    <AuthTemplateBlock>
+      <AuthTemplateInnerBlock>
         <div className="logo-area">
           <Link to="/">My Little Blog</Link>
         </div>
         {children}
-      </AuthTemplateInnerBox>
-    </AuthTemplateBox>
+      </AuthTemplateInnerBlock>
+    </AuthTemplateBlock>
   );
 };
