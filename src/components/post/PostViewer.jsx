@@ -2,6 +2,8 @@ import Responsive from 'components/common/Responsive';
 import { StatusCodes } from 'http-status-codes';
 import React from 'react';
 import styled from 'styled-components';
+import PostSubInfo from './PostSubInfo';
+import PostTagBox from './PostTagBox';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 2rem;
@@ -18,38 +20,6 @@ const PostHeader = styled.div`
   h1 {
     font-size: 2.5rem;
     margin: 0;
-  }
-`;
-
-const PostSubInfo = styled.div`
-  color: dodgerblue;
-  opacity: 0.9;
-  margin: 1rem 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-
-  span + span:before {
-    color: dodgerblue;
-    padding: 0 0.25rem;
-    content: '\\B7';
-  }
-`;
-
-const PostTags = styled.div`
-  maring-top: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  & > .tag {
-    margin: 0.4rem 0.2rem;
-    padding: 0.2rem 0.8rem;
-    border-radius: 30px;
-    cursor: pointer;
-    color: white;
-    background-color: dodgerblue;
-    transition: 0.2s ease opacity;
-    &:hover {
-      opacity: 0.8;
-    }
   }
 `;
 
@@ -94,15 +64,8 @@ const PostViewer = ({ post, loading, error }) => {
     <PostViewerBlock>
       <PostHeader>
         <h1>{title}</h1>
-        <PostSubInfo>
-          <span>{user.username}</span>
-          <span>{new Date(publishedDate).toLocaleDateString()}</span>
-        </PostSubInfo>
-        <PostTags>
-          {tags.map((item) => (
-            <div className="tag"># {item}</div>
-          ))}
-        </PostTags>
+        <PostSubInfo username={user.username} publishedDate={publishedDate} />
+        <PostTagBox tags={tags} />
       </PostHeader>
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
       {/* 스크립트 공격 대비 속성 */}

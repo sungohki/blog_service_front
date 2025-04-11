@@ -5,6 +5,8 @@ const ResponsiveBlock = styled.div`
   padding: 0 10px;
   width: 1024px;
   margin: 0 auto;
+  background-color: white;
+  border-radius: 4px;
 
   transition: 0.4s ease width;
 
