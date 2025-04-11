@@ -1,7 +1,7 @@
 import createRequestActionTypes from 'hooks/createRequestActionTypes';
 import { createAction, handleActions } from 'redux-actions';
 import { finishLoading, startLoading } from './loading';
-import { postsRead } from 'api/posts';
+import { postsReadOne } from 'api/posts';
 
 // action type
 const [READ_POST, READ_POST_SUCCESS, READ_POST_FAILURE] =
@@ -12,10 +12,10 @@ const UNLOAD_POST = 'post/UNLOAD_POST'; // 포스트 언로드
 export const unloadPost = createAction(UNLOAD_POST); // 포스트 언로드
 
 // thunk function
-export const readPostThunk = (id) => async (dispatch) => {
+export const readPostOneThunk = (id) => async (dispatch) => {
   dispatch(startLoading(READ_POST)); // 포스트 읽기 시작
   try {
-    const res = await postsRead(id);
+    const res = await postsReadOne(id);
     dispatch({
       type: READ_POST_SUCCESS,
       payload: res.data, // 읽은 포스트

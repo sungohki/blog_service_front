@@ -1,5 +1,5 @@
 import PostViewer from 'components/post/PostViewer';
-import { readPostThunk, unloadPost } from 'modules/post';
+import { readPostOneThunk, unloadPost } from 'modules/post';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -14,7 +14,7 @@ const PostViewerContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(readPostThunk(postId));
+    dispatch(readPostOneThunk(postId));
     return () => {
       dispatch(unloadPost()); // 언로드 시 포스트 초기화
     };
