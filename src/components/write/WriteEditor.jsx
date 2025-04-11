@@ -50,7 +50,7 @@ const QuillWrapper = styled.div`
   }
 `;
 
-const WriteEditor = () => {
+const WriteEditor = ({ onChangeField, title, body }) => {
   const quillElement = useRef(null); // Quill.js를 사용할 DOM 요소
   const quillInstance = useRef(null); // Quill.js 인스턴스
 
@@ -67,11 +67,26 @@ const WriteEditor = () => {
         ],
       },
     });
-  }, []);
+
+    const quillEditor = quillInstance.current; // Quill.js 인스턴스
+    quillEditor.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        onChangeField({ key: 'body', value: quillEditor.root.innerHTML });
+      }
+    });
+  }, [onChangeField]);
+
+  const handleChangeTitle = (e) => {
+    onChangeField({ key: 'title', value: e.target.value });
+  };
 
   return (
     <WriteEditorBlock>
-      <WriteEditorTitleInput placeholder="제목을 입력하세요" />
+      <WriteEditorTitleInput
+        placeholder="제목을 입력하세요"
+        onChange={handleChangeTitle}
+        value={title}
+      />
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>
