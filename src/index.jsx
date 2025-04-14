@@ -8,6 +8,7 @@ import rootReducer from 'modules';
 import { Provider } from 'react-redux';
 import { thunk } from 'redux-thunk';
 import { checkThunk, tempSetUser } from 'modules/user';
+import { HelmetProvider } from 'react-helmet-async';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -20,7 +21,9 @@ try {
   const user = localStorage.getItem('user');
   if (user) {
     store.dispatch(tempSetUser(JSON.parse(user)));
+    // user 정보 확인
     store.dispatch(checkThunk()).then((result) => {
+      // 해당 user 정보 만료 혹은 오류 발생 시 로그인 페이지로 이동
       if (result && result.error) {
         localStorage.removeItem('user');
         alert('로그인 정보가 만료되었습니다. 다시 로그인 해주세요.');
@@ -36,7 +39,9 @@ try {
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </BrowserRouter>
   </Provider>
 );

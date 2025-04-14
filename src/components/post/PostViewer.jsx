@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PostSubInfo from '../common/PostSubInfo';
 import PostTagBox from '../common/PostTagBox';
+import { Helmet } from 'react-helmet-async';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 2rem;
@@ -62,6 +63,9 @@ const PostViewer = ({ post, loading, error, actionButtons }) => {
 
   return (
     <PostViewerBlock>
+      <Helmet>
+        <title>{title} - My Little Blog</title>
+      </Helmet>
       <PostHeader>
         <h1>{title}</h1>
         <PostSubInfo username={user.username} publishedDate={publishedDate} />
