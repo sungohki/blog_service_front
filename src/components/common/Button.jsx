@@ -16,6 +16,11 @@ const ButtonBlock = styled.button`
   &:hover {
     background-color: dodgerblue;
   }
+  &:disabled {
+    background-color: lightgrey;
+    color: white;
+    cursor: not-allowed;
+  }
 
   ${(props) =>
     props.fullwidth &&

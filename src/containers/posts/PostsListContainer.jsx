@@ -1,4 +1,4 @@
-import PostList from 'components/posts/PostList';
+import PostsList from 'components/posts/PostsList';
 import { listPostThunk } from 'modules/posts';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ const PostsListContainer = () => {
   }, [dispatch, username, searchParams]);
 
   return (
-    <PostList
+    <PostsList
       posts={posts}
       error={error}
       loading={loading}

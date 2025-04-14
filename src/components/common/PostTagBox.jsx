@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PostTagBoxBlock = styled.div`
@@ -39,12 +40,18 @@ const PostTagBoxBlock = styled.div`
 `;
 
 const PostTagBox = ({ tags }) => {
+  const { username } = useParams();
+
   return (
     <PostTagBoxBlock>
       {tags.map((item) => (
-        <span key={item} className="tag">
+        <Link
+          key={item}
+          className="tag"
+          to={username ? `/${username}?tag=${item}` : `/?tag=${item}`}
+        >
           # {item}
-        </span>
+        </Link>
       ))}
     </PostTagBoxBlock>
   );

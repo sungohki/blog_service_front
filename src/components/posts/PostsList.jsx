@@ -1,9 +1,9 @@
 import { Button } from 'components/common/Button';
 import Responsive from 'components/common/Responsive';
 import styled from 'styled-components';
-import PostItem from './PostItem';
+import PostsItem from './PostsItem';
 
-const PostListBlock = styled(Responsive)`
+const PostsListBlock = styled(Responsive)`
   margin-top: 2rem;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -19,24 +19,24 @@ const WritePostButtonWrapper = styled.div`
   margin: 1rem 0;
 `;
 
-const PostList = ({ posts, error, loading, showWriteButton }) => {
+const PostsList = ({ posts, error, loading, showWriteButton }) => {
   if (error) {
-    return <PostListBlock>Error Occured</PostListBlock>;
+    return <PostsListBlock>Error Occured</PostsListBlock>;
   }
 
   return (
-    <PostListBlock>
+    <PostsListBlock>
       <WritePostButtonWrapper>
         {showWriteButton && <Button to="/write">Add Post</Button>}
       </WritePostButtonWrapper>
       {!loading && posts && (
         <div className="post-list">
           {posts.map((item) => (
-            <PostItem post={item} key={item._id} />
+            <PostsItem post={item} key={item._id} />
           ))}
         </div>
       )}
-    </PostListBlock>
+    </PostsListBlock>
   );
 };
-export default PostList;
+export default PostsList;

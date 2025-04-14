@@ -4,7 +4,7 @@ import PostSubInfo from '../common/PostSubInfo';
 import PostTagBox from '../common/PostTagBox';
 import { Link } from 'react-router-dom';
 
-const PostItemBlock = styled.div`
+const PostsItemBlock = styled.div`
   padding: 1rem 1rem;
 
   transition: 0.2s ease background-color;
@@ -29,11 +29,11 @@ const PostItemBlock = styled.div`
   }
 `;
 
-const PostItem = ({ post }) => {
+const PostsItem = ({ post }) => {
   const { publishedDate, user, tags, title, body, _id } = post;
 
   return (
-    <PostItemBlock>
+    <PostsItemBlock>
       <h2>
         <Link to={`/${user.username}/${_id}`}>{title}</Link>
       </h2>
@@ -41,9 +41,9 @@ const PostItem = ({ post }) => {
       <p>
         <Link to={`/${user.username}/${_id}`}>{body}</Link>
       </p>
-      <PostTagBox tags={tags} />
-    </PostItemBlock>
+      <PostTagBox tags={tags} username={user.username} />
+    </PostsItemBlock>
   );
 };
 
-export default PostItem;
+export default PostsItem;
