@@ -37,7 +37,7 @@ const PostViewerErrorBlock = styled.div`
   min-height: 200px;
 `;
 
-const PostViewer = ({ post, loading, error }) => {
+const PostViewer = ({ post, loading, error, actionButtons }) => {
   if (error) {
     if (error.response && error.response.status === StatusCodes.NOT_FOUND) {
       // 404
@@ -67,8 +67,9 @@ const PostViewer = ({ post, loading, error }) => {
         <PostSubInfo username={user.username} publishedDate={publishedDate} />
         <PostTagBox tags={tags} />
       </PostHeader>
+      {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
-      {/* 스크립트 공격 대비 속성 */}
+      {/* dangerouslySetInnerHTML: 스크립트 공격 대비 속성 */}
     </PostViewerBlock>
   );
 };
