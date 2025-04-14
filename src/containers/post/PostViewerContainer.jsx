@@ -1,3 +1,4 @@
+import { postsRemoveOne } from 'api/posts';
 import PostActionButtons from 'components/post/PostActionButtons';
 import PostViewer from 'components/post/PostViewer';
 import { readPostOneThunk, unloadPost } from 'modules/post';
@@ -26,11 +27,19 @@ const PostViewerContainer = () => {
     };
   }, [dispatch, postId]);
 
-  const onEdit = () => {
+  const handleEdit = () => {
     dispatch(setOriginalPost(post));
     navigate('/write');
   };
 
+  const handleRemove = async () => {
+    try {
+      await postsRemoveOne(postId);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const ownPost = (user && user._id) === (post && post.user._id);
 
   return (
@@ -38,7 +47,11 @@ const PostViewerContainer = () => {
       post={post}
       loading={loading}
       error={postError}
-      actionButtons={ownPost && <PostActionButtons onEdit={onEdit} />}
+      actionButtons={
+        ownPost && (
+          <PostActionButtons onEdit={handleEdit} onRemove={handleRemove} />
+        )
+      }
     />
   );
 };
