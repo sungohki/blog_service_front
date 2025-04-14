@@ -25,6 +25,9 @@ a:link {
   color: inherit;
   text-decoration: none;
 }
+button {
+  font-family: 'Noto Sans KR', 'Noto Serif Kr', sans-serif;
+}
 * {
   box-sizing: inherit;
 }
