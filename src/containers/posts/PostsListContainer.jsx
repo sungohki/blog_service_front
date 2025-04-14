@@ -1,4 +1,4 @@
-import PostList from 'components/post/PostList';
+import PostList from 'components/posts/PostList';
 import { listPostThunk } from 'modules/posts';
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';

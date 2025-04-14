@@ -2,8 +2,8 @@ import Responsive from 'components/common/Responsive';
 import { StatusCodes } from 'http-status-codes';
 import React from 'react';
 import styled from 'styled-components';
-import PostSubInfo from './PostSubInfo';
-import PostTagBox from './PostTagBox';
+import PostSubInfo from '../common/PostSubInfo';
+import PostTagBox from '../common/PostTagBox';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 2rem;

@@ -17,19 +17,22 @@ const PostTagBoxBlock = styled.div`
       content: '';
       position: absolute;
       width: 100%;
-      height: 2px;
+      height: 100%;
+      border: 1px dashed dodgerblue;
+      border-radius: 4px;
       bottom: 0;
-      background-color: dodgerblue;
       left: 0;
-      transition: 0.2s ease transform;
-      transform: scaleX(0);
+      opacity: 0;
+      transition: 0.2s ease transform, 0.2s ease opacity;
+      transform: scale(0, 0);
     }
 
     &:hover {
-      color: coral;
+      color: orangered;
       &::after {
-        transform: scaleX(1);
-        background-color: lightcoral;
+        transform: scale(1, 1);
+        opacity: 1;
+        border: 1px dashed orangered;
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import PostSubInfo from './PostSubInfo';
-import PostTagBox from './PostTagBox';
+import PostSubInfo from '../common/PostSubInfo';
+import PostTagBox from '../common/PostTagBox';
 import { Link } from 'react-router-dom';
 
 const PostItemBlock = styled.div`
@@ -10,6 +10,10 @@ const PostItemBlock = styled.div`
   transition: 0.2s ease background-color;
   &:hover {
     background-color: aliceblue;
+
+    h2 {
+      color: blue;
+    }
   }
   & + & {
     border-top: 1px solid #aaa;
@@ -19,10 +23,9 @@ const PostItemBlock = styled.div`
     margin: 0;
     color: #333;
     transition: 0.2s ease color;
-    cursor: pointer;
-    &:hover {
-      color: dodgerblue;
-    }
+  }
+  p {
+    transition: 0.2s ease color;
   }
 `;
 
@@ -35,7 +38,9 @@ const PostItem = ({ post }) => {
         <Link to={`/${user.username}/${_id}`}>{title}</Link>
       </h2>
       <PostSubInfo username={user.username} publishedDate={publishedDate} />
-      <p>{body}</p>
+      <p>
+        <Link to={`/${user.username}/${_id}`}>{body}</Link>
+      </p>
       <PostTagBox tags={tags} />
     </PostItemBlock>
   );

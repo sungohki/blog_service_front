@@ -12,7 +12,7 @@ export const listPostThunk =
     dispatch(startLoading(LIST_POSTS));
     try {
       const res = await postsReadList({ page, username, tag });
-      dispatch({ type: LIST_POSTS_SUCCESS, payload: res.data });
+      dispatch({ type: LIST_POSTS_SUCCESS, payload: res.data, meta: res });
     } catch (error) {
       console.error(error);
       dispatch({ type: LIST_POSTS_FAILURE, payload: error, error: true });
@@ -20,14 +20,15 @@ export const listPostThunk =
     dispatch(finishLoading(LIST_POSTS));
   };
 
-const initialState = { posts: null, error: null };
+const initialState = { posts: null, error: null, lastPage: 1 };
 
 const posts = handleActions(
   {
-    [LIST_POSTS_SUCCESS]: (state, { payload: posts }) => ({
+    [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: res }) => ({
       ...state,
       posts: posts,
       error: null,
+      lastPage: parseInt(res.headers['last-page'], 10) || 1,
     }),
 
     [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({
